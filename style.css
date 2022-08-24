@@ -26,7 +26,7 @@ button{
 button:hover{
     background-color: steelblue;
 }
-.first-step,
+.final-step,
 .second-step{
  display: none;   
 }
