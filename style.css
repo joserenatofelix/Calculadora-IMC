@@ -36,3 +36,7 @@ input{
     border: none;
     outline: none;
 }
+#resultado{
+    font-size: 25px;
+}
+
