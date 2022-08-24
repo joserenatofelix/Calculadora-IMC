@@ -17,7 +17,9 @@ function go(currentStep,nextStep)
         {
             dNone = finalDiv;
         }
+
         dNone.style.display = 'none';
+       
         if(nextStep == 1)
         {
             dBlock = firstDiv;
@@ -28,7 +30,7 @@ function go(currentStep,nextStep)
         }
         else
         {
-            ddBlock = finalDiv;
+            dBlock = finalDiv;
         }
         dBlock.style.display = 'block';
 }
@@ -61,34 +63,34 @@ function validate()
         const result = document.getElementById('resultado');
         if(imc < 18.5)
         {
-            console.log('Magreza | Obesidade: 0');
-            result.style.color = 'yellow';
-            result.innerHTML = 'Magreza | Obesidade: 0';
+            console.log('Abaixo do Peso | Obesidade: 0');
+            result.style.color = 'orange';
+            result.innerHTML = 'Abaixo do Peso | Obesidade: 0';
         }
-        else if(imc >= 18 && imc < 25)
+        else if(imc >= 18.5 && imc < 25)
         {
             console.log('Normal | Obesidade: 0');
             result.style.color = 'green';
-            result.innerHTML = 'Normal | Obesidade: 0';
+            result.innerHTML = 'Normal - Parabéns Peso Ideal | Obesidade: 0';
         }
         else if(imc >= 25 && imc < 30)
         {
-            console.log('Sobrepeso | Obesidade: l');
+            console.log('Sobrepeso | Obesidade: I');
             result.style.color = 'orange';
-            result.innerHTML = 'Sobrepeso | Obesidade: l';
+            result.innerHTML = 'Sobrepeso | Obesidade: I';
         }
         else if(imc >= 30 && imc < 40)
         {
-            console.log('Obesidade | Obesidade: ll');
+            console.log('Obesidade | Obesidade: II');
             result.style.color = 'red';
-            result.innerHTML = 'Obesidade | Obesidade: ll';
+            result.innerHTML = 'Obesidade | Obesidade: II';
         }
         else
         {
-            console.log('Obesidade grave| Obesidade: lll');
+            console.log('Obesidade grave| Obesidade: III');
             result.style.color = 'black';
-            result.innerHTML = 'Obesidade grave| Obesidade: lll';
+            result.innerHTML = 'Obesidade grave| Obesidade: III';
         }
-        go(1,2);
+        go(2,3);
     }
 }
