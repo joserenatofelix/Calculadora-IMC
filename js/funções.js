@@ -63,33 +63,39 @@ function validate()
         const result = document.getElementById('resultado');
         if(imc < 18.5)
         {
-            console.log('Abaixo do Peso | Obesidade: 0');
+            console.log('Abaixo do Peso');
             result.style.color = 'orange';
-            result.innerHTML = 'Abaixo do Peso | Obesidade: 0';
+            result.innerHTML = 'Abaixo do Peso';
         }
-        else if(imc >= 18.5 && imc < 25)
+        else if(imc >= 18.5 && imc < 24.9)
         {
-            console.log('Normal | Obesidade: 0');
+            console.log('Normal');
             result.style.color = 'green';
-            result.innerHTML = 'Normal - Parabéns Peso Ideal | Obesidade: 0';
+            result.innerHTML = 'Normal - Parabéns Peso Ideal';
         }
-        else if(imc >= 25 && imc < 30)
+        else if(imc >= 25 && imc < 29.9)
         {
-            console.log('Sobrepeso | Obesidade: I');
+            console.log('Sobrepeso');
             result.style.color = 'orange';
-            result.innerHTML = 'Sobrepeso | Obesidade: I';
+            result.innerHTML = 'Sobrepeso';
         }
-        else if(imc >= 30 && imc < 40)
+        else if(imc >= 30 && imc < 34.9)
         {
-            console.log('Obesidade | Obesidade: II');
+            console.log('Obesidade: Grau 1');
             result.style.color = 'red';
-            result.innerHTML = 'Obesidade | Obesidade: II';
+            result.innerHTML = 'Obesidade 1';
+        }
+        else if(imc >= 35 && imc < 39.9)
+        {
+            console.log('Obesidade: Grau 2');
+            result.style.color = 'black';
+            result.innerHTML = 'Obesidade: Grau 2';
         }
         else
         {
-            console.log('Obesidade grave| Obesidade: III');
-            result.style.color = 'black';
-            result.innerHTML = 'Obesidade grave| Obesidade: III';
+            console.log('Obesidade: Grau 3');
+            result.style.color = 'purple';
+            result.innerHTML = 'Obesidade: Grau 3';
         }
         go(2,3);
     }
