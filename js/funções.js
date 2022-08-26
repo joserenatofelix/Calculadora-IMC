@@ -70,7 +70,7 @@ function validate()
         else if(imc >= 18.5 && imc < 24.9)
         {
             console.log('Normal');
-            result.style.color = 'green';
+            result.style.color = 'Acquamarine';
             result.innerHTML = 'Normal - Parabéns Peso Ideal';
         }
         else if(imc >= 25 && imc < 29.9)
