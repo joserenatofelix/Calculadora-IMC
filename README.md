@@ -16,7 +16,7 @@ Projeto, bem simples mas muito intuitivo que calcula o indice corporal e avisa s
 <video controls="controls" src="https://user-images.githubusercontent.com/93296913/192342353-53b72147-e8f9-42bf-8dc3-6dc08d06af91.mp4">
 </video>
 
-## Link - Você pode testar o projeto, acessando o link abaixo
+## Você pode testar o projeto, acessando o link abaixo
 
 https://joserenatofelix.github.io/Calculadora-IMC/
 
