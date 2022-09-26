@@ -20,7 +20,7 @@ Projeto, bem simples mas muito intuitivo que calcula o indice corporal e avisa s
 <video controls="controls" src="">
 </video>
 
-## Você pode testar o projeto, acesse o link abaixo
+## Você pode testar o projeto, acessando o link abaixo
 
 
 ## Link
