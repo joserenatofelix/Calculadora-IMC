@@ -1,7 +1,3 @@
-# Calculadora IMC
- Calcula o indice corporal e avisa se a pessoa está ou não acima do peso.
-
-
 # <h1 align="center"> CALCULADORA IMC </h1>
 
 ## <b>O projeto</b> </br>
@@ -17,13 +13,10 @@ Projeto, bem simples mas muito intuitivo que calcula o indice corporal e avisa s
 
 ## Overview:
 
-<video controls="controls" src="hhttps://user-images.githubusercontent.com/93296913/192342353-53b72147-e8f9-42bf-8dc3-6dc08d06af91.mp4">
+<video controls="controls" src="https://user-images.githubusercontent.com/93296913/192342353-53b72147-e8f9-42bf-8dc3-6dc08d06af91.mp4">
 </video>
 
-## Você pode testar o projeto, acessando o link abaixo
-
-
-## Link
+## Link - Você pode testar o projeto, acessando o link abaixo
 
 https://joserenatofelix.github.io/Calculadora-IMC/
 
