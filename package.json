@@ -1,0 +1,16 @@
+{
+  "name": "calculadora-imc",
+  "version": "1.0.0",
+  "description": "Calculadora de IMC - versão refatorada com ES Modules e testes",
+  "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.6.1"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "transform": {}
+  }
+}

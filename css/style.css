@@ -291,7 +291,7 @@ label {
     position: absolute;
     top: 50%;
     left: 0;
-    width: 0%;
+    width: var(--progress-percent, 0%);
     height: 4px;
     background-color: var(--primary);
     transform: translateY(-50%);

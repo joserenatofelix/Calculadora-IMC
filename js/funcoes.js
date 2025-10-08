@@ -1,150 +1,200 @@
-// Elementos DOM
-const steps = document.querySelectorAll('.step');
-const progressSteps = document.querySelectorAll('.progress-step');
-const pesoInput = document.getElementById('peso');
-const alturaInput = document.getElementById('altura');
-const pesoError = document.getElementById('peso-error');
-const alturaError = document.getElementById('altura-error');
-const resultValue = document.getElementById('result-value');
-const resultClassification = document.getElementById('result-classification');
 
-// Função para navegar entre os passos
-function goToStep(stepNumber) {
-    // Esconder todos os passos
-    steps.forEach(step => step.classList.remove('active'));
-    progressSteps.forEach(step => step.classList.remove('active'));
-    
-    // Mostrar o passo atual
-    document.querySelector(`.step-${stepNumber}`).classList.add('active');
-    
-    // Atualizar a barra de progresso
-    for (let i = 0; i < stepNumber; i++) {
-        progressSteps[i].classList.add('active');
-    }
-    
-    // Se for o passo 2, focar no primeiro campo
-    if (stepNumber === 2) {
-        setTimeout(() => pesoInput.focus(), 300);
-    }
-    
-    // Se for o passo 1, limpar os campos
-    if (stepNumber === 1) {
-        resetForm();
-    }
-}
+/* funcoes.js
+	Versão refatorada: ES6+, mais legível e com melhorias de acessibilidade.
+	Responsabilidades:
+	- controlar navegação entre steps (1,2,3)
+	- validar entradas (peso e altura)
+	- calcular IMC e classificar
+	- atualizar UI (valor, classificação, mensagens de erro)
+*/
 
-// Função para resetar o formulário
-function resetForm() {
-    pesoInput.value = '';
-    alturaInput.value = '';
-    pesoError.style.display = 'none';
-    alturaError.style.display = 'none';
-    pesoInput.parentElement.classList.remove('input-error');
-    alturaInput.parentElement.classList.remove('input-error');
-}
+import { calcularIMC, classificarIMC } from './imc.js';
 
-// Função para validar e calcular o IMC
-function validateAndCalculate() {
-    let isValid = true;
-    
-    // Resetar erros
-    pesoError.style.display = 'none';
-    alturaError.style.display = 'none';
-    pesoInput.parentElement.classList.remove('input-error');
-    alturaInput.parentElement.classList.remove('input-error');
-    
-    // Validar peso
-    if (!pesoInput.value || pesoInput.value <= 0) {
-        pesoError.style.display = 'block';
-        pesoInput.parentElement.classList.add('input-error');
-        isValid = false;
-    }
-    
-    // Validar altura
-    if (!alturaInput.value || alturaInput.value <= 0) {
-        alturaError.style.display = 'block';
-        alturaInput.parentElement.classList.add('input-error');
-        isValid = false;
-    }
-    
-    // Se válido, calcular IMC
-    if (isValid) {
-        const peso = parseFloat(pesoInput.value);
-        const altura = parseFloat(alturaInput.value) / 100; // Converter cm para m
-        
-        const imc = peso / (altura * altura);
-        showResult(imc);
-        goToStep(3);
-    }
-}
+(() => {
+	 'use strict';
 
-// Função para mostrar o resultado
-function showResult(imc) {
-    resultValue.textContent = imc.toFixed(1);
-    
-    // Determinar classificação
-    let classification = '';
-    let className = '';
-    
-    if (imc < 18.5) {
-        classification = 'Abaixo do peso';
-        className = 'abaixo-peso';
-    } else if (imc < 25) {
-        classification = 'Peso normal';
-        className = 'normal';
-    } else if (imc < 30) {
-        classification = 'Sobrepeso';
-        className = 'sobrepeso';
-    } else if (imc < 35) {
-        classification = 'Obesidade Grau I';
-        className = 'obesidade-1';
-    } else if (imc < 40) {
-        classification = 'Obesidade Grau II';
-        className = 'obesidade-2';
-    } else {
-        classification = 'Obesidade Grau III';
-        className = 'obesidade-3';
-    }
-    
-    resultClassification.textContent = classification;
-    resultClassification.className = `result-classification ${className}`;
-}
+	// Pequenos utilitários
+	const $ = selector => document.querySelector(selector);
+	const $$ = selector => Array.from(document.querySelectorAll(selector));
+	const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 
-// Permitir pressionar Enter para calcular
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter' && document.querySelector('.step-2').classList.contains('active')) {
-        validateAndCalculate();
-    }
-});
+	// Elementos principais
+	const startBtn = $('#start-btn');
+	const calculateBtn = $('#calculate-btn');
+	const recalcBtn = $('#recalculate-btn');
+	const finishBtn = $('#finish-btn');
 
-// Validação em tempo real para melhor UX
-pesoInput.addEventListener('input', function() {
-    if (this.value && this.value > 0) {
-        pesoError.style.display = 'none';
-        this.parentElement.classList.remove('input-error');
-    }
-});
+	const stepElements = $$('.step');
+	const progressSteps = $$('.progress-step');
+	const progressBar = $('.progress-bar');
 
-alturaInput.addEventListener('input', function() {
-    if (this.value && this.value > 0) {
-        alturaError.style.display = 'none';
-        this.parentElement.classList.remove('input-error');
-    }
-});
+	const pesoInput = $('#peso');
+	const alturaInput = $('#altura');
+	const pesoError = $('#peso-error');
+	const alturaError = $('#altura-error');
 
-// Inicialização
-document.addEventListener('DOMContentLoaded', function() {
-    // Garantir que o primeiro passo esteja ativo
-    goToStep(1);
+	const resultValueEl = $('#result-value');
+	const resultClassificationEl = $('#result-classification');
 
-    // Adicionar event listeners aos botões
-    const startBtn = document.getElementById('start-btn');
-    const calculateBtn = document.getElementById('calculate-btn');
-    const recalculateBtn = document.getElementById('recalculate-btn');
-    const finishBtn = document.getElementById('finish-btn');
+	// Estado
+	let currentStep = 1; // 1,2,3
 
-    startBtn.addEventListener('click', () => goToStep(2));
-    calculateBtn.addEventListener('click', validateAndCalculate);
-    recalculateBtn.addEventListener('click', () => goToStep(2));
-    finishBtn.addEventListener('click', () => goToStep(1));
-});
+	// Acessibilidade: marque as div de erro como regiões dinâmicas
+	[pesoError, alturaError].forEach(el => el && el.setAttribute('aria-live', 'polite'));
+
+	// Inicialização
+	const init = () => {
+		bindEvents();
+		goToStep(1);
+	};
+
+	// Eventos
+	const bindEvents = () => {
+		startBtn && startBtn.addEventListener('click', () => goToStep(2));
+		calculateBtn && calculateBtn.addEventListener('click', onCalculate);
+		recalcBtn && recalcBtn.addEventListener('click', () => goToStep(2));
+		finishBtn && finishBtn.addEventListener('click', onFinish);
+
+		// Ativar cálculo ao pressionar Enter na altura (UX)
+		alturaInput && alturaInput.addEventListener('keydown', (e) => {
+			if (e.key === 'Enter') {
+				e.preventDefault();
+				onCalculate();
+			}
+		});
+
+		// Limpar erro quando o usuário começa a digitar
+		[pesoInput, alturaInput].forEach(input => {
+			if (!input) return;
+			input.addEventListener('input', () => {
+				clearError(input);
+			});
+		});
+	};
+
+	// Navegação entre steps
+	const goToStep = (step) => {
+		currentStep = clamp(step, 1, 3);
+
+		// Atualiza visibilidade
+		stepElements.forEach(el => {
+			el.classList.toggle('active', el.classList.contains(`step-${currentStep}`));
+		});
+
+		// Atualiza progress steps
+		progressSteps.forEach((el, idx) => {
+			const stepIndex = idx + 1;
+			el.classList.toggle('active', stepIndex <= currentStep);
+		});
+
+		// Atualiza barra de progresso via variável CSS --progress-percent (usada por ::after)
+		const percent = currentStep === 1 ? '0%' : currentStep === 2 ? '50%' : '100%';
+		if (progressBar && progressBar.style) {
+			progressBar.style.setProperty('--progress-percent', percent);
+		}
+	};
+
+	// Validação
+	const validate = () => {
+		let valid = true;
+		const peso = parseFloat(pesoInput.value);
+		const altura = parseFloat(alturaInput.value);
+
+		if (!Number.isFinite(peso) || peso <= 0) {
+			showError(pesoInput, pesoError, 'Por favor, informe um peso válido maior que 0');
+			valid = false;
+		}
+
+		if (!Number.isFinite(altura) || altura <= 0) {
+			showError(alturaInput, alturaError, 'Por favor, informe uma altura válida em cm');
+			valid = false;
+		}
+
+		return { valid, peso, altura };
+	};
+
+	// Mostrar / limpar erros
+	const showError = (inputEl, errorEl, message) => {
+		if (inputEl) {
+			const group = inputEl.closest('.input-group');
+			if (group) group.classList.add('input-error');
+			inputEl.setAttribute('aria-invalid', 'true');
+		}
+		if (errorEl) {
+			errorEl.textContent = message;
+			errorEl.style.display = 'block';
+		}
+	};
+
+	const clearError = (inputEl) => {
+		if (!inputEl) return;
+		const group = inputEl.closest('.input-group');
+		if (group) group.classList.remove('input-error');
+		inputEl.removeAttribute('aria-invalid');
+
+		// limpar a mensagem correspondente
+		if (inputEl.id === 'peso') {
+			pesoError.style.display = 'none';
+			pesoError.textContent = '';
+		} else if (inputEl.id === 'altura') {
+			alturaError.style.display = 'none';
+			alturaError.textContent = '';
+		}
+	};
+
+	// As funções puras `calcularIMC` e `classificarIMC` foram importadas de ./imc.js
+
+	// Atualiza UI do resultado
+	const mostrarResultado = (imc) => {
+		const { label, className } = classificarIMC(imc);
+
+		// valor
+		resultValueEl.textContent = imc.toFixed(1).replace('.', ','); // formatação pt-BR
+
+		// classificação
+		resultClassificationEl.textContent = label;
+
+		// atualizar classes visuais (remover classes anteriores)
+		resultClassificationEl.className = 'result-classification';
+		resultClassificationEl.classList.add(className);
+	};
+
+	// Ação do botão calcular
+	const onCalculate = (e) => {
+		if (e && typeof e.preventDefault === 'function') e.preventDefault();
+
+		try {
+			const { valid, peso, altura } = validate();
+			if (!valid) return;
+
+			const imc = calcularIMC(peso, altura);
+
+			mostrarResultado(imc);
+			goToStep(3);
+		} catch (err) {
+			console.error('Erro ao calcular IMC:', err);
+			alert('Ocorreu um erro ao calcular o IMC. Verifique os valores e tente novamente.');
+		}
+	};
+
+	const onFinish = () => {
+		// Limpa campos e volta ao início
+		pesoInput.value = '';
+		alturaInput.value = '';
+		clearError(pesoInput);
+		clearError(alturaInput);
+		resultValueEl.textContent = '--';
+		resultClassificationEl.textContent = '--';
+		resultClassificationEl.className = 'result-classification';
+
+		goToStep(1);
+	};
+
+	// Inicializa quando DOM estiver pronto
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', init);
+	} else {
+		init();
+	}
+
+})();

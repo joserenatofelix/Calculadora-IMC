@@ -34,111 +34,124 @@ Calculadora de Índice de Massa Corporal (IMC) moderna e responsiva que calcula 
 |---------|--------|
 | ![Desktop](https://via.placeholder.com/400x250/7F7FD5/FFFFFF?text=Desktop+View) | ![Mobile](https://via.placeholder.com/200x350/86A8E7/FFFFFF?text=Mobile+View) |
 
-## 🏗️ Estrutura do Projeto
+<p align="center">
+   <a href="https://developer.mozilla.org/docs/Web/HTML" target="_blank" rel="noopener">
+      <img src="img/Tabela IMC.jpg" width="100" alt="Logo do projeto" />
+   </a>
+</p>
+
+<p align="center">
+   <a><img src="https://img.shields.io/github/last-commit/joserenatofelix/Calculadora-IMC?style=for-the-badge&logo=github" alt="last-commit"/></a>
+   <a><img src="https://img.shields.io/github/languages/code-size/joserenatofelix/Calculadora-IMC?style=for-the-badge&logo=github" alt="code-size"/></a>
+   <a><img src="https://img.shields.io/github/languages/top/joserenatofelix/Calculadora-IMC?style=for-the-badge&logo=javascript" alt="top-language"/></a>
+   <a><img src="https://img.shields.io/github/license/joserenatofelix/Calculadora-IMC?style=for-the-badge&logo=mit" alt="license"/></a>
+</p>
+
+## 🧮 Calculadora IMC
+
+Uma calculadora moderna e responsiva para calcular o Índice de Massa Corporal (IMC). Projeto feito como exercício e exemplo de boas práticas com HTML, CSS e JavaScript (ES Modules), com foco em acessibilidade e UX.
+
+## ✨ Tecnologias
+
+- [HTML5](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
+- [CSS3](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
+- [JavaScript (ES6+)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+
+---
+
+## 📋 Sobre o Projeto
+
+- Interface em passos (welcome → dados → resultado) com barra de progresso.
+- Validação de entradas (peso em kg, altura em cm) e mensagens de erro com suporte ARIA.
+- Cálculo do IMC com classificação visual (Abaixo do peso, Peso normal, Sobrepeso, Obesidade I/II/III).
+- Código modular: `js/imc.js` (funções puras) e `js/funcoes.js` (controle da UI).
+
+---
+
+## 📝 Funcionalidades
+
+- Iniciar fluxo de cálculo em etapas
+- Validação e mensagens de erro acessíveis
+- Cálculo do IMC com precisão de uma casa decimal
+- Classificação com cores correspondentes na tabela
+- Recalcular ou finalizar (reset)
+
+---
+
+## 🗂️ Estrutura do Projeto
+
+```
 Calculadora-IMC/
-│
-├── index.html # Estrutura principal
+├── index.html               # Página principal (app)
 ├── css/
-│ └── style.css # Estilos modernizados
+│   └── style.css           # Estilos do projeto
 ├── js/
-│ └── funcoes.js # Lógica da aplicação
-├── img/ # Assets visuais
-└── README.md
+│   ├── funcoes.js          # Lógica da UI (ES Module)
+│   └── imc.js              # Funções puras (calcular/classificar)
+├── img/
+│   ├── IMC.mp4
+│   └── Tabela IMC.jpg      # Imagens e assets
+├── README.md               # Documentação (este arquivo)
+└── LICENSE                 # Licença
+```
 
-text
+---
 
-## 📊 Classificação IMC
+## ⚙️ Como executar
 
-| IMC | Classificação | Cor |
-|-----|---------------|-----|
-| Abaixo de 18,5 | Abaixo do peso | ⚠️ Amarelo |
-| 18,5 - 24,9 | Peso normal | ✅ Verde |
-| 25 - 29,9 | Sobrepeso | 🟠 Laranja |
-| 30 - 34,9 | Obesidade Grau I | 🔴 Vermelho |
-| 35 - 39,9 | Obesidade Grau II | 🟤 Marrom |
-| Acima de 40 | Obesidade Grau III | 🖤 Preto |
+### Pré-requisitos
 
-## 🎯 Como Usar
+- Um navegador moderno (Chrome, Firefox, Edge, Safari)
+- (Opcional) Live Server do VS Code ou qualquer servidor estático
 
-1. **Iniciar**: Clique em "Iniciar Cálculo"
-2. **Inserir Dados**: 
-   - Peso em quilogramas (kg)
-   - Altura em centímetros (cm)
-3. **Calcular**: Clique em "Calcular IMC" ou pressione Enter
-4. **Resultado**: Veja seu IMC e classificação
-5. **Ações**: Calcular novamente ou finalizar
+### Executando localmente
 
-## 🌟 Destaques Técnicos
+1. Clone o repositório:
 
-- **CSS Variables** para fácil manutenção
-- **Flexbox/Grid** para layouts responsivos
-- **Media Queries** para adaptabilidade
-- **JavaScript Modular** código organizado
-- **Acessibilidade** com navegação por teclado
-
-## 🔧 Instalação
-
-```bash
-# Clone o repositório
+```
 git clone https://github.com/joserenatofelix/Calculadora-IMC.git
+```
 
-# Entre no diretório
-cd Calculadora-IMC
+2. Abra a pasta e abra `index.html` no navegador.
 
-# Abra no navegador
-open index.html
-🎥 Demonstração
-Overview:
-<video controls="controls" src="https://user-images.githubusercontent.com/93296913/192342353-53b72147-e8f9-42bf-8dc3-6dc08d06af91.mpav"> Seu navegador não suporta o elemento de vídeo. </video>
-🌐 Deploy
-Você pode testar o projeto acessando:
-🔗 https://joserenatofelix.github.io/Calculadora-IMC/
+Opções:
+- Abrir o arquivo diretamente no navegador.
+- Usar Live Server (VS Code) ou um servidor estático:
+---
 
-📝 Licença
-Este projeto está sob a licença MIT. Veja o arquivo LICENSE para detalhes.
+## 🤝 Contribuindo
 
-👨‍💻 Autor
-José Renato Felix da Silva
-💼 LinkedIn
+Contribuições são bem-vindas! Para contribuir:
 
-💻 GitHub
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature: `git checkout -b feature/minha-feature`
+3. Faça commits claros: `git commit -m "feat: descrição da mudança"`
+4. Envie para sua branch: `git push origin feature/minha-feature`
+5. Abra um Pull Request
 
-🚀 Desenvolvedor Front-end
+---
 
-🤝 Contribuições
-Contribuições são sempre bem-vindas! Sinta-se à vontade para:
+## � Licença
 
-Fazer um Fork do projeto
+Este projeto está sob a licença MIT — veja o arquivo `LICENSE` para detalhes.
 
-Criar uma Branch para sua feature
+---
 
-Commitar suas mudanças
+## 👨‍💻 Autor
 
-Fazer Push para a Branch
+**Renato Felix**
 
-Abrir um Pull Request
+---
 
-📞 Contato
-Se tiver alguma dúvida ou sugestão, entre em contato:
+## 🎉 Agradecimentos
 
-Email: [seu-email@example.com]
+- Material didático e inspiração em layouts modernos
 
-LinkedIn: José Renato Felix
+---
 
-<div align="center">
-⭐️ Se este projeto foi útil, deixe uma estrela no repositório! ⭐️
+Se gostou, deixe uma estrela ⭐
 
-</div> ```
-Principais melhorias no README:
-Design mais atrativo - Uso de emojis e badges visuais
+Desenvolvido com ❤️ por Renato Felix
 
-Informações técnicas expandidas - Mais detalhes sobre as funcionalidades
-
-Estrutura organizada - Seções bem definidas
-
-Visual responsivo - Layout adaptado para leitura
-
-Instruções de uso - Passo a passo mais claro
-
-Destaques técnicos - Tecnologias e features explicadas
+![alt text](img/Tabela IMC.jpg)
 
