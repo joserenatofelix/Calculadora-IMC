@@ -11,48 +11,6 @@
     <img src="img/javascript-logo.svg" width="65" alt="JavaScript Logo" />
   </a>
 </p>
-<p align="center">
-  <a><img src="https://img.shields.io/github/last-commit/joserenatofelix/Clinica-Veterinaria?style=for-the-badge&logo=github" alt="last-commit"/></a>
-  <a><img src="https://img.shields.io/github/languages/code-size/joserenatofelix/Clinica-Veterinaria?style=for-the-badge&logo=github" alt="code-size"/></a>
-  <a><img src="https://img.shields.io/github/languages/top/joserenatofelix/Clinica-Veterinaria?style=for-the-badge&logo=javascript" alt="top-language"/></a>
-  <a><img src="https://img.shields.io/github/license/joserenatofelix/Clinica-Veterinaria?style=for-the-badge&logo=mit" alt="license"/></a>
-</p>
-
-# <h1 align="center"> CALCULADORA IMC </h1>
-
-## <b>O projeto</b> </br>
-Calculadora de Índice de Massa Corporal (IMC) moderna e responsiva que calcula o índice corporal e classifica o resultado de acordo com os padrões da OMS. Interface intuitiva com experiência de usuário aprimorada.
-
-## ✨ Funcionalidades
-
-- ✅ Cálculo preciso do IMC
-- ✅ Classificação automática conforme padrões da OMS
-- ✅ Design totalmente responsivo
-- ✅ Interface moderna com animações suaves
-- ✅ Validação em tempo real
-- ✅ Barra de progresso visual
-- ✅ Tabela de referência integrada
-- ✅ Navegação por teclado (Enter)
-
-## 🚀 Tecnologias
-
-- **HTML5** - Estrutura semântica
-- **CSS3** - Design moderno com Flexbox/Grid
-- **JavaScript** - Interatividade e cálculos
-
-## 🎨 Design Features
-
-- **Gradiente moderno** - Background atrativo
-- **Glass morphism** - Efeito visual contemporâneo
-- **Animações CSS** - Transições suaves
-- **Responsividade** - Adaptável a todos os dispositivos
-- **Feedback visual** - Validação interativa
-
-## 📱 Layout Responsivo
-
-| Desktop | Mobile |
-|---------|--------|
-| ![Desktop](https://via.placeholder.com/400x250/7F7FD5/FFFFFF?text=Desktop+View) | ![Mobile](https://via.placeholder.com/200x350/86A8E7/FFFFFF?text=Mobile+View) |
 
 <p align="center">
    <a href="https://developer.mozilla.org/docs/Web/HTML" target="_blank" rel="noopener">
@@ -172,8 +130,6 @@ Este projeto está sob a licença MIT — veja o arquivo `LICENSE` para detalhes
 Se gostou, deixe uma estrela ⭐
 
 Desenvolvido com ❤️ por Renato Felix
-
-![alt text](img/Tabela IMC.jpg)
 
 <img width="971" height="556" alt="image" src="https://github.com/user-attachments/assets/95b736aa-308a-4268-96eb-d6c719abcc56" />
 
